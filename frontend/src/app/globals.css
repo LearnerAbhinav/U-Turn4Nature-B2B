@@ -1,0 +1,437 @@
+@import "tailwindcss";
+
+/* ============================================================
+   U-Turn4Nature B2B — Design System
+   Brand colors, typography, and utilities matching u-turn.in
+   ============================================================ */
+
+/* ── CSS Custom Properties ────────────────────────────────── */
+
+:root {
+  /* Brand Colors - Matching PIC Portal Theme */
+  --primary: #ffffff;
+  --primary-text: hsl(90, 20%, 15%);
+  --brand-green: #1B4332;
+  --brand-green-light: #A8B89A;
+  --brand-green-dark: #123023;
+  --info: #6B7C3A;
+  --footer-bg: #1B4332;
+  --footer-text: #ffffff;
+  --notice-bg: #FDFAF4;
+  --notice-text: #1B4332;
+  --badge-bg: #2ECC71;
+  --badge-text: #ffffff;
+  --price-color: #1B4332;
+  --accent-gold: #D4A017;
+  --accent-gold-light: #FDFAF4;
+  --surface: #ffffff;
+  --surface-hover: #FDFAF4;
+  --border: hsl(86, 16%, 85%);
+  --border-dark: hsl(90, 10%, 40%);
+  --error: #f44336;
+
+  /* Backgrounds */
+  --background: hsl(40, 33%, 94%);
+  --foreground: hsl(90, 20%, 15%);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.03);
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Tailwind v4 Theme ────────────────────────────────────── */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand: #1B4332;
+  --color-brand-light: #A8B89A;
+  --color-brand-dark: #123023;
+  --color-brand-darker: #1B4332;
+  --color-accent-gold: #D4A017;
+  --color-accent-gold-light: #FDFAF4;
+  --color-surface: #ffffff;
+  --color-info: #6B7C3A;
+  --color-error: #f44336;
+  --color-border: hsl(86, 16%, 85%);
+  --color-border-dark: hsl(90, 10%, 40%);
+  --font-sans: "Arial", "Noto Sans", "Roboto", sans-serif;
+}
+
+/* ── Base Styles ──────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Arial", "Noto Sans", "Roboto", sans-serif;
+  line-height: 1.6;
+}
+
+::selection {
+  background-color: #29a56c;
+  color: white;
+}
+
+/* ── Custom Scrollbar ─────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8faf9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand-green);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-green-dark);
+}
+
+/* ── Glassmorphism Utilities ──────────────────────────────── */
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.glass-dark {
+  background: rgba(14, 75, 53, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── Nature-Inspired Decorative Elements ──────────────────── */
+
+.leaf-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 C35 15 45 20 55 15 C50 25 45 35 30 40 C15 35 10 25 5 15 C15 20 25 15 30 5Z' fill='%2329a56c' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+.leaf-accent::before {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(
+    circle,
+    rgba(27, 67, 50, 0.08) 0%, /* matching #1B4332 */
+    transparent 70%
+  );
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Button Styles (matching u-turn.in) ───────────────────── */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--brand-green);
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-green-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(27, 67, 50, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--brand-green);
+  background-color: transparent;
+  border: 2px solid var(--brand-green);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover {
+  background-color: var(--brand-green-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(27, 67, 50, 0.15);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--brand-green);
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-white:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Section Styles ───────────────────────────────────────── */
+
+.section-padding {
+  padding: 4rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 5rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 6rem 2rem;
+  }
+}
+
+/* ── Card Hover Effect ────────────────────────────────────── */
+
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Gradient Utilities ───────────────────────────────────── */
+
+.gradient-green {
+  background: linear-gradient(135deg, var(--brand-green) 0%, var(--brand-green-dark) 100%);
+}
+
+.gradient-green-soft {
+  background: linear-gradient(135deg, var(--surface-hover) 0%, var(--brand-green-light) 100%);
+}
+
+.gradient-gold {
+  background: linear-gradient(135deg, var(--accent-gold) 0%, #a67c00 100%);
+}
+
+.gradient-hero {
+  background: linear-gradient(
+    135deg,
+    var(--background) 0%,
+    var(--surface-hover) 30%,
+    var(--brand-green-light) 100%
+  );
+}
+
+/* ── Animated Underline ───────────────────────────────────── */
+
+.animated-underline {
+  position: relative;
+}
+
+.animated-underline::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--brand-green);
+  transition: width 0.3s ease;
+}
+
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+/* ── Container ────────────────────────────────────────────── */
+
+.container-brand {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-brand {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-brand {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ── Animations ───────────────────────────────────────────── */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-green {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(27, 67, 50, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(27, 67, 50, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-pulse-green {
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+/* ── Marquee / Scroll ─────────────────────────────────────── */
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 30s linear infinite;
+}
+
+/* ── Badge Styles ─────────────────────────────────────────── */
+
+.badge-green {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--badge-bg);
+  border-radius: 9999px;
+}
+
+.badge-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--foreground);
+  background-color: var(--accent-gold);
+  border-radius: 9999px;
+}
+
+/* ── Price Styles ─────────────────────────────────────────── */
+
+.price {
+  color: var(--brand-green);
+  font-weight: 700;
+}
+
+/* ── Hide scrollbar but allow scroll ──────────────────────── */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

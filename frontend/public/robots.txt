@@ -1,0 +1,11 @@
+# U-Turn4Nature B2B Wholesale Platform
+# https://b2b.u-turn.in
+
+User-agent: *
+Allow: /
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /login
+Disallow: /register
+
+Sitemap: https://b2b.u-turn.in/sitemap.xml
