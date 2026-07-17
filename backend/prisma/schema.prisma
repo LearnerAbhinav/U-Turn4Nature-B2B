@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String   @id @default(uuid())
+  email           String   @unique
+  password        String
+  companyName     String
+  contactPerson   String
+  phone           String
+  whatsapp        String?
+  gstin           String?
+  businessType    String
+  yearsInBusiness String
+
+  // Address
+  street  String
+  city    String
+  state   String
+  pincode String
+
+  // Preferences
+  estimatedVolume String
+  paymentTerms    String
+
+  role      String   @default("partner") // partner, admin
+  status    String   @default("pending") // pending, approved, rejected
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  inquiries Inquiry[]
+  orders    Order[]
+}
+
+model Inquiry {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  status    String   @default("submitted") // submitted, quoted, accepted, rejected
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items InquiryItem[]
+}
+
+model InquiryItem {
+  id        String  @id @default(uuid())
+  inquiryId String
+  inquiry   Inquiry @relation(fields: [inquiryId], references: [id])
+  productId String
+  quantity  Int
+  unit      String
+  notes     String?
+}
+
+model Order {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  status      String   @default("processing") // processing, shipped, delivered, cancelled
+  totalAmount Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
